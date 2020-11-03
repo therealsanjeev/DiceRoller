@@ -4,22 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
+import com.therealsanjeev.diceroller.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var diceImage: ImageView
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
 
-        val diceButton: Button = findViewById(R.id.roll_button)
-        diceButton.setOnClickListener {
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding.rollButton.setOnClickListener {
             rollDice()
-            //Toast.makeText(this, "Hey, Roller Clicked ", Toast.LENGTH_SHORT).show()
         }
-        diceImage = findViewById(R.id.dice_img)
+//        val diceButton: Button = findViewById(R.id.roll_button)
+//        diceButton.setOnClickListener {
+//            rollDice()
+//            //Toast.makeText(this, "Hey, Roller Clicked ", Toast.LENGTH_SHORT).show()
+//        }
+//        diceImage = findViewById(R.id.dice_img)
+        binding.diceImg
     }
 
     private fun rollDice() {
@@ -35,6 +44,6 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableRes)
+        dice_img.setImageResource(drawableRes)
     }
 }
